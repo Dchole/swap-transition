@@ -1,26 +1,28 @@
 import { defineConfig } from "vite";
+import path from "path";
 import dts from "vite-plugin-dts";
 
 export default defineConfig({
-  plugins: [
-    dts({
-      outDir: "dist/",
-      insertTypesEntry: true
-    })
-  ],
   build: {
     lib: {
-      entry: "./src/index.ts",
+      entry: path.resolve(__dirname, "src/index.ts"), // Ensure this is the correct entry point
       name: "SwapTransition",
       fileName: format => `index.${format}.js`
     },
     rollupOptions: {
-      // Make sure to externalize deps that shouldn't be bundled
-      // into your library
-      external: [],
+      external: [], // Add any dependencies here
       output: {
-        globals: {}
+        globals: {
+          // Add globals here if needed
+        }
       }
     }
-  }
+  },
+  plugins: [
+    dts({
+      outDir: "dist/",
+      insertTypesEntry: true,
+      exclude: ["src/main.ts"]
+    })
+  ]
 });
