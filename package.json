@@ -27,6 +27,8 @@
     "vite-plugin-dts": "^4.0.0-beta.1"
   },
   "dependencies": {
+    "@fontsource/open-sans": "^5.0.28",
+    "@fontsource/raleway": "^5.0.19",
     "sass": "^1.77.8"
   }
 }

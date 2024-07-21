@@ -12,7 +12,7 @@ interface Component {
 export function transitionSwap(
   leavingComponent: Component,
   enteringComponent: Component,
-  options: Options
+  options?: Options
 ) {
   const {
     element: leavingElement,
@@ -43,7 +43,7 @@ export function transitionSwap(
   // When the leaving animation is complete
   leavingAnimation.onfinish = () => {
     // Hide the leaving element if the option is set
-    if (options.keepLeavingElementMounted) {
+    if (options?.keepLeavingElementMounted) {
       leavingElement.style.position = "absolute";
       leavingElement.style.zIndex = "-1";
       leavingElement.style.width = "1px";
@@ -53,12 +53,12 @@ export function transitionSwap(
       leavingElement.style.display = "none";
     }
 
-    if (!options.disableDelay) {
+    if (!options?.disableDelay) {
       revealEnteringElement();
     }
   };
 
-  if (options.disableDelay) {
+  if (options?.disableDelay) {
     revealEnteringElement();
   }
 }

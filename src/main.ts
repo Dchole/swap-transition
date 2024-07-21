@@ -1,28 +1,46 @@
-import { transitionSwap } from "../dist";
+import "@fontsource/raleway/600.css";
+import "@fontsource/raleway/700.css";
+import "@fontsource/open-sans/400.css";
+import "@fontsource/open-sans/500.css";
+import "./style.css";
+import { transitionSwap } from ".";
 
-const startButton = document.getElementById("start") as HTMLButtonElement;
+const START_BUTTON = document.getElementById(
+  "swap-button"
+) as HTMLButtonElement;
 
-const leavingElement = document.getElementById("leaving") as HTMLElement;
-const enteringElement = document.getElementById("entering") as HTMLElement;
+const LEAVING_ELEMENT = document.getElementById(
+  "leaving-element"
+) as HTMLElement;
+const ENTERING_ELEMENT = document.getElementById(
+  "entering-element"
+) as HTMLElement;
 
-startButton.addEventListener("click", () => {
+let transitionDone = false;
+
+START_BUTTON.addEventListener("click", () => {
+  if (transitionDone) {
+    START_BUTTON.innerText = "Start Transition";
+    LEAVING_ELEMENT.style.display = "block";
+    ENTERING_ELEMENT.style.display = "none";
+    transitionDone = false;
+
+    return;
+  }
+
   transitionSwap(
     {
-      element: leavingElement,
-      keyframes: [
-        { transform: "translateX(0)" },
-        { transform: "translateX(100%)" }
-      ],
-      keyframesOptions: { duration: 5500 }
+      element: LEAVING_ELEMENT,
+      keyframes: [{ opacity: 1 }, { opacity: 0 }],
+      keyframesOptions: { duration: 200, easing: "ease-in" }
     },
     {
-      element: enteringElement,
-      keyframes: [
-        { transform: "translateX(-100%)" },
-        { transform: "translateX(0)" }
-      ],
-      keyframesOptions: { duration: 5500 }
-    },
-    { keepLeavingElementMounted: true, disableDelay: true }
+      element: ENTERING_ELEMENT,
+      keyframes: [{ opacity: 0 }, { opacity: 1 }],
+      keyframesOptions: { duration: 200, easing: "ease-out" }
+    }
   );
+
+  transitionDone = true;
+  START_BUTTON.innerText = "Reset Transition";
 });
