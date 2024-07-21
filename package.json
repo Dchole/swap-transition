@@ -28,7 +28,6 @@
   },
   "dependencies": {
     "@fontsource/open-sans": "^5.0.28",
-    "@fontsource/raleway": "^5.0.19",
-    "sass": "^1.77.8"
+    "@fontsource/raleway": "^5.0.19"
   }
 }
