@@ -3,7 +3,7 @@ import "@fontsource/raleway/700.css";
 import "@fontsource/open-sans/400.css";
 import "@fontsource/open-sans/500.css";
 import "./style.css";
-import { transitionSwap } from ".";
+import { reset, transitionSwap } from ".";
 
 const START_BUTTON = document.getElementById(
   "swap-button"
@@ -21,8 +21,7 @@ let transitionDone = false;
 START_BUTTON.addEventListener("click", () => {
   if (transitionDone) {
     START_BUTTON.innerText = "Start Transition";
-    LEAVING_ELEMENT.style.display = "block";
-    ENTERING_ELEMENT.style.display = "none";
+    reset(LEAVING_ELEMENT, ENTERING_ELEMENT);
     transitionDone = false;
 
     return;
