@@ -1,2 +1,2 @@
-export * from "./reset";
+export * from "./restore";
 export * from "./transition-swap";

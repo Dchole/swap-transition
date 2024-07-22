@@ -1,6 +1,6 @@
 import { getInitialStyles, getUpdatedProperties } from "./shared";
 
-export function reset(
+export function restore(
   leavingElement: HTMLElement,
   enteringElement: HTMLElement
 ) {
