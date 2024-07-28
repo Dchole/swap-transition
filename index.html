@@ -33,28 +33,88 @@
       </section>
       <section id="simple-transitions">
         <h2><a href="#simple-transitions">Simple Transitions Example</a></h2>
-        <div class="card">
-          <div id="leaving-element" class="card-content">
-            <img
-              src="https://placehold.co/200x60/pink/black?text=Initial+Content&font=Raleway"
-              alt="Leaving image"
-            />
-            <p>
-              This is the initial content. Click on the swap content button
-              below to swap this content with the next content
-            </p>
+        <div class="example-box">
+          <div class="card example-card">
+            <div id="leaving-element" class="card-content">
+              <img
+                src="https://placehold.co/200x60/pink/black?text=Initial+Content&font=Raleway"
+                alt="Leaving image"
+              />
+              <p>
+                This is the initial content. Click on the swap content button
+                below to swap this content with the next content
+              </p>
+            </div>
+            <div id="entering-element" class="card-content" hidden>
+              <img
+                src="https://placehold.co/200x60/orange/white?text=New+Content&font=Raleway"
+                alt="Entering image"
+              />
+              <p>
+                This is the new content. Replacing the initial content. Click on
+                the reset button if you want to test again
+              </p>
+            </div>
+            <button id="swap-button" class="action-button">Swap Content</button>
           </div>
-          <div id="entering-element" class="card-content" hidden>
-            <img
-              src="https://placehold.co/200x60/orange/white?text=New+Content&font=Raleway"
-              alt="Entering image"
-            />
-            <p>
-              This is the new content. Replacing the initial content. Click on
-              the reset button if you want to test again
-            </p>
+          <div class="card" id="controls-container">
+            <form
+              id="simple-transitions-controls"
+              class="controls card-content"
+            >
+              <div class="entering-controls">
+                <h3>Entering Element controls</h3>
+                <div class="form-control">
+                  <label>Duration</label>
+                  <input
+                    type="number"
+                    id="simple-transitions-entering-duration"
+                    name="entering-duration"
+                    value="240"
+                  />
+                </div>
+                <div class="form-control">
+                  <label>Easing</label>
+                  <select
+                    name="entering-easing"
+                    id="simple-transitions-entering-easing"
+                  >
+                    <option value="ease-in" selected>ease-in</option>
+                    <option value="ease-out">ease-out</option>
+                    <option value="ease-in-out">ease-in-out</option>
+                    <option value="linear">linear</option>
+                  </select>
+                </div>
+              </div>
+              <div class="leaving-controls">
+                <h3>Leaving Element controls</h3>
+                <div class="form-control">
+                  <label>Duration</label>
+                  <input
+                    type="number"
+                    id="simple-transitions-leaving-duration"
+                    name="leaving-duration"
+                    value="160"
+                  />
+                </div>
+                <div class="form-control">
+                  <label>Easing</label>
+                  <select
+                    name="leaving-easing"
+                    id="simple-transitions-leaving-easing"
+                  >
+                    <option value="ease-in">ease-in</option>
+                    <option value="ease-out" selected>ease-out</option>
+                    <option value="ease-in-out">ease-in-out</option>
+                    <option value="linear">linear</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+            <div>
+              <button class="action-button toggle-code">Toggle code</button>
+            </div>
           </div>
-          <button id="swap-button" class="action-button">Swap Content</button>
         </div>
       </section>
     </main>

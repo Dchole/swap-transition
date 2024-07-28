@@ -57,7 +57,7 @@ body {
   padding: 1rem;
   color: var(--display-text-color);
   background-color: var(--background-color);
-  max-width: 768px;
+  max-width: 1028px;
 }
 
 p,
@@ -104,6 +104,7 @@ h6,
 h1 {
   font-size: var(--font-size-xx-large);
   font-weight: var(--font-weight-bold);
+  margin-top: 0;
   margin-bottom: 1rem;
 }
 
@@ -112,11 +113,12 @@ h3,
 h4,
 h5,
 h6 {
+  margin-top: 0;
   font-weight: var(--font-weight-semibold);
 }
 
 section {
-  container-type: inline-size;
+  margin-bottom: 1.25rem;
 }
 
 h2 {
@@ -125,15 +127,60 @@ h2 {
 
 img {
   width: 100%;
+}
+
+label {
+  display: inline-block;
+  font-family: var(--font-family-title);
+  font-size: var(--font-size-small);
+  margin-bottom: 0.25rem;
+}
+
+input,
+select {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-medium);
+  padding: 0.25rem;
+  border: 1px solid var(--border-color);
   border-radius: 0.25rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-@container (width > 400px) {
-  img {
-    width: 200px;
-  }
+.form-control {
+  display: flex;
+  flex-direction: column;
 }
 
+.form-control:not(:last-of-type) {
+  margin-bottom: 1rem;
+}
+
+.example-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#controls-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* #controls-container {
+} */
+
+#controls-container .controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
+#controls-container .controls > div {
+  padding-bottom: 1rem;
+}
 #examples-container {
   list-style-type: "\2012";
   padding: 0 1rem;
@@ -158,6 +205,23 @@ img {
   border: 1px solid var(--border-color);
   background-color: var(--card-background-color);
   max-width: 420px;
+  box-sizing: border-box;
+}
+
+.example-card {
+  container-type: inline-size;
+  width: min(420px, 100%);
+}
+
+.entering-controls {
+  border-right: 1px solid var(--border-color);
+  padding-right: 1rem;
+}
+
+@container (width > 360px) {
+  img {
+    width: 200px;
+  }
 }
 
 .action-button {
