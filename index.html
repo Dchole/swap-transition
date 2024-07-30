@@ -70,7 +70,7 @@
                     type="number"
                     id="simple-transitions-entering-duration"
                     name="entering-duration"
-                    value="240"
+                    value="160"
                   />
                 </div>
                 <div class="form-control">
@@ -79,8 +79,8 @@
                     name="entering-easing"
                     id="simple-transitions-entering-easing"
                   >
-                    <option value="ease-in" selected>ease-in</option>
-                    <option value="ease-out">ease-out</option>
+                    <option value="ease-in">ease-in</option>
+                    <option value="ease-out" selected>ease-out</option>
                     <option value="ease-in-out">ease-in-out</option>
                     <option value="linear">linear</option>
                   </select>
@@ -94,7 +94,7 @@
                     type="number"
                     id="simple-transitions-leaving-duration"
                     name="leaving-duration"
-                    value="160"
+                    value="240"
                   />
                 </div>
                 <div class="form-control">
@@ -103,16 +103,54 @@
                     name="leaving-easing"
                     id="simple-transitions-leaving-easing"
                   >
-                    <option value="ease-in">ease-in</option>
-                    <option value="ease-out" selected>ease-out</option>
+                    <option value="ease-in" selected>ease-in</option>
+                    <option value="ease-out">ease-out</option>
                     <option value="ease-in-out">ease-in-out</option>
                     <option value="linear">linear</option>
                   </select>
                 </div>
               </div>
             </form>
+            <div id="simple-transitions-code" hidden>
+              <div>
+                <button id="simple-copy-button" class="action-button">
+                  Copy code
+                </button>
+              </div>
+              <pre>
+                <code class="language-html">
+transitionSwap({
+  element: LEAVING_ELEMENT,
+  keyframes: [
+    { opacity: 1 },
+    { opacity: 0 }
+  ],
+  keyframesOptions: {
+    duration: 240,
+    easing: "ease-in"
+  }
+},
+{
+  element: ENTERING_ELEMENT,
+  keyframes: [
+    { opacity: 0 },
+    { opacity: 1 }
+  ],
+  keyframesOptions: {
+    duration: 160,
+    easing: "ease-out"
+  }
+})
+                </code>
+              </pre>
+            </div>
             <div>
-              <button class="action-button toggle-code">Toggle code</button>
+              <button
+                id="simple-toggle-button"
+                class="action-button toggle-code"
+              >
+                Toggle code
+              </button>
             </div>
           </div>
         </div>
