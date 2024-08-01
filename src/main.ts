@@ -6,10 +6,6 @@ import "@fontsource/open-sans/500.css";
 import "./style.css";
 import "highlight.js/styles/github.css";
 import { restore, transitionSwap } from ".";
-import hljs from "highlight.js";
-import typescript from "highlight.js/lib/languages/typescript";
-
-hljs.registerLanguage("typescript", typescript);
 
 const SIMPLE_START_BUTTON = document.getElementById(
   "swap-button"
@@ -37,36 +33,48 @@ const SIMPLE_TRANSITIONS_CODE = document.querySelector<HTMLFormElement>(
   "#simple-transitions-code"
 );
 
-document.querySelectorAll("pre code").forEach(el => {
-  const code = hljs.highlight(el.innerHTML, {
-    language: "typescript"
+window.addEventListener("load", async () => {
+  const { default: hljs } = await import("highlight.js");
+  const { default: typescript } = await import(
+    "highlight.js/lib/languages/typescript"
+  );
+
+  hljs.registerLanguage("typescript", typescript);
+
+  document.querySelectorAll("pre code").forEach(el => {
+    const code = hljs.highlight(el.innerHTML, {
+      language: "typescript"
+    });
+
+    // Create a DOM parser to convert the HTML string into a document
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(code.value, "text/html");
+
+    const optionKeys = ["duration", "easing"];
+    let variant: "leaving" | "entering" = "leaving";
+
+    for (const [index, child] of Array.from(doc.body.children).entries()) {
+      const previousChild = doc.body.children.item(index - 1);
+      if (child.classList.contains("hljs-variable")) {
+        variant = child.textContent?.split("_")[0].toLowerCase() as
+          | "leaving"
+          | "entering";
+      }
+
+      if (
+        previousChild?.textContent &&
+        optionKeys.includes(previousChild.textContent)
+      ) {
+        child.setAttribute("contenteditable", "true");
+        child.setAttribute(
+          "data-key",
+          `${variant}-${previousChild.textContent}`
+        );
+      }
+    }
+
+    el.innerHTML = "\n" + doc.body.innerHTML;
   });
-
-  // Create a DOM parser to convert the HTML string into a document
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(code.value, "text/html");
-
-  const optionKeys = ["duration", "easing"];
-  let variant: "leaving" | "entering" = "leaving";
-
-  for (const [index, child] of Array.from(doc.body.children).entries()) {
-    const previousChild = doc.body.children.item(index - 1);
-    if (child.classList.contains("hljs-variable")) {
-      variant = child.textContent?.split("_")[0].toLowerCase() as
-        | "leaving"
-        | "entering";
-    }
-
-    if (
-      previousChild?.textContent &&
-      optionKeys.includes(previousChild.textContent)
-    ) {
-      child.setAttribute("contenteditable", "true");
-      child.setAttribute("data-key", `${variant}-${previousChild.textContent}`);
-    }
-  }
-
-  el.innerHTML = "\n" + doc.body.innerHTML;
 });
 
 if (!SIMPLE_TRANSITIONS_CONTROLS || !SIMPLE_TRANSITIONS_CODE) {

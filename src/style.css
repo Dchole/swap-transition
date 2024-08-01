@@ -72,7 +72,7 @@
 }
 
 body {
-  margin: 0;
+  margin: auto;
   padding: 1rem;
   color: var(--display-text-color);
   background-color: var(--background-color);
@@ -227,9 +227,6 @@ span.hljs-number {
   width: min(420px, 100%);
 }
 
-/* #controls-container {
-} */
-
 #controls-container .controls {
   display: flex;
   gap: 1rem;
@@ -278,6 +275,7 @@ span.hljs-number {
 .example-card {
   container-type: inline-size;
   width: min(420px, 100%);
+  height: fit-content;
 }
 
 .entering-controls {
